@@ -63,6 +63,7 @@
 <a name="analogues"/>
 
 ## 1.3 Аналоги
+Обзор аналогов представлен в документе [Overview of analogues](../Requirements/Overview%20of%20analogues.md)
 
 <a name="user_requirements"/>
 
