@@ -1,0 +1,70 @@
+{
+  "items": [
+    {
+      "section": "Today",
+      "text": "first task",
+      "isImportant": true,
+      "isSolved": true
+    },
+    {
+      "section": "Today",
+      "text": "second task",
+      "isImportant": false,
+      "isSolved": true
+    },
+    {
+      "section": "Today",
+      "text": "third task",
+      "isImportant": false,
+      "isSolved": true
+    },
+    {
+      "section": "Tomorrow",
+      "text": "fourth task",
+      "isImportant": true,
+      "isSolved": false
+    },
+    {
+      "section": "Tomorrow",
+      "text": "fifth task",
+      "isImportant": true,
+      "isSolved": false
+    },
+    {
+      "section": "Tomorrow",
+      "text": "sixth task",
+      "isImportant": false,
+      "isSolved": false
+    },
+    {
+      "section": "Tomorrow",
+      "text": "seventh task",
+      "isImportant": false,
+      "isSolved": false
+    },
+    {
+      "section": "Upcoming",
+      "text": "eighth task",
+      "isImportant": false,
+      "isSolved": false
+    },
+    {
+      "section": "Upcoming",
+      "text": "ninth task",
+      "isImportant": false,
+      "isSolved": false
+    },
+    {
+      "section": "Without deadline",
+      "text": "tenth task",
+      "isImportant": false,
+      "isSolved": false
+    },
+    {
+      "section": "Without deadline",
+      "text": "last task",
+      "isImportant": false,
+      "isSolved": false
+    }
+  ]
+}
