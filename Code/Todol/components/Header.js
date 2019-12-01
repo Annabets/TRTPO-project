@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Appbar, Menu} from 'react-native-paper';
+import {firebaseService} from "../services/firebaseService";
 
 export default class Header extends Component {
   state = {
@@ -28,6 +29,7 @@ export default class Header extends Component {
             />
           }>
           <Menu.Item title="Sign out" onPress={() => {
+            firebaseService.signOut();
             this._dismissMenu();
           }} />
         </Menu>

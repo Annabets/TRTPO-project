@@ -7,6 +7,13 @@ function handleAuthStateChange(listener) {
   firebase.auth().onAuthStateChanged(listener);
 }
 
+function signOut() {
+  return firebase.auth().signOut().catch(error => {
+    return Promise.reject(error.message)
+  });
+}
+
 export const firebaseService = {
   handleAuthStateChange,
-}
+  signOut,
+};
