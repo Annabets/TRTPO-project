@@ -2,13 +2,23 @@ import React, {Component} from 'react';
 import {StyleSheet, ScrollView, Text} from 'react-native';
 import {List, Button, Divider} from 'react-native-paper';
 import ListItem from './ListItem';
+import ModalForm from './ModalForm';
 
 export default class ListView extends Component {
   state = {
     sections: ['Today', 'Tomorrow', 'Upcoming', 'Without deadline'].map(item => {
       return {title: item, display: false};
     }),
+    isModalOpen: false,
+    modalTitle: '',
+    modalText: '',
   };
+
+  _setModalTitle = title => this.setState({title: title});
+
+  _setModalText = text => this.setState({modalText: text});
+
+  _hideModal = () => this.setState({isModalOpen: false});
 
   _renderSectionItems = (tasks, currentSection) => {
     return tasks.map((item, index) => {
@@ -17,6 +27,14 @@ export default class ListView extends Component {
           key={index}
           index={index}
           item={item}
+          setModalTitle={this._setModalTitle}
+          editTask={text => {
+            this.setState({
+              isModalOpen: true,
+              modalTitle: 'Edit task',
+              modalText: text,
+            })
+          }}
         />
       ) : null;
     });
@@ -54,9 +72,14 @@ export default class ListView extends Component {
           <Button
             contentStyle={styles.button}
             icon="plus"
-            onPress={() => {}}
+            onPress={() => {
+              this.setState({
+                isModalOpen: true,
+                modalTitle: 'Add new task',
+              });
+            }}
           />}
-          <Divider />
+          <Divider/>
         </List.Section>
       );
     });
@@ -65,7 +88,16 @@ export default class ListView extends Component {
   render() {
     const {sections} = this.state;
     return (
+      <>
         <ScrollView>{this._renderListSections(sections)}</ScrollView>
+        <ModalForm
+          visible={this.state.isModalOpen}
+          hideModal={this._hideModal}
+          modalTitle={this.state.modalTitle}
+          modalText={this.state.modalText}
+          setModalText={this._setModalText}
+        />
+      </>
     );
   }
 }
@@ -78,8 +110,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
   },
-  badge: {
-  },
+  badge: {},
   button: {
     height: 55,
     borderLeftWidth: 5,

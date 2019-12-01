@@ -33,15 +33,22 @@ export default class ListItem extends Component {
               />
             }>
             <Menu.Item
-              onPress={() => {}}
+              onPress={() => {
+                this.props.editTask(item.text);
+                this._closeMenu();
+              }}
               title="Edit"
             />
             <Menu.Item
-              onPress={() => {}}
+              onPress={() => {
+                this._closeMenu();
+              }}
               title="Delete"
             />
             <Menu.Item
-              onPress={() => {}}
+              onPress={() => {
+                this._closeMenu();
+              }}
               title={`${item.isImportant ? 'Unmark' : 'Mark'} as important`}
             />
           </Menu>
