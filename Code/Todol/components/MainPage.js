@@ -7,6 +7,7 @@ import tasks from '../assets/mock_data/tasks';
 export default class MainPage extends Component {
   state = {
     tasks: tasks.items,
+    showAll: true,
   };
 
   _addTask = (section, index, text) => {
@@ -89,13 +90,23 @@ export default class MainPage extends Component {
     });
   };
 
+  _setShowFlag = () => {
+    this.setState({
+      showAll: !this.state.showAll,
+    })
+  };
+
   render() {
+    const {tasks, showAll} = this.state;
     return (
       <Provider>
         <Portal>
-          <Header showAll={true}/>
+          <Header
+            showAll={showAll}
+            setShowFlag={this._setShowFlag}
+          />
           <ListView
-            tasks={this.state.tasks}
+            tasks={showAll ? tasks : tasks.filter(item => item.isImportant)}
             addTask={this._addTask}
             editTask={this._editTask}
             deleteTask={this._deleteTask}

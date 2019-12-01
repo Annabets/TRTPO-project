@@ -12,7 +12,7 @@ export default class Header extends Component {
   _dismissMenu = () => this.setState({account: false, options: false});
 
   render() {
-    const {showAll} = this.props;
+    const {showAll, setShowFlag} = this.props;
     const {account, options} = this.state;
     return (
       <Appbar.Header>
@@ -27,7 +27,9 @@ export default class Header extends Component {
               onPress={this._handleAccBtnClick}
             />
           }>
-          <Menu.Item title="Sign out" onPress={() => {}} />
+          <Menu.Item title="Sign out" onPress={() => {
+            this._dismissMenu();
+          }} />
         </Menu>
         <Menu
           onDismiss={this._dismissMenu}
@@ -39,8 +41,13 @@ export default class Header extends Component {
               onPress={this._handleOptionsBtnClick}
             />
           }>
-          <Menu.Item title="Clear completed" onPress={() => {}} />
-          <Menu.Item title={showAll ? "Only important" : "All tasks"} onPress={() => {}} />
+          <Menu.Item title="Clear completed" onPress={() => {
+            this._dismissMenu();
+          }} />
+          <Menu.Item title={showAll ? "Only important" : "All tasks"} onPress={() => {
+            setShowFlag();
+            this._dismissMenu();
+          }} />
         </Menu>
       </Appbar.Header>
     );
