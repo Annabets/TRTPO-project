@@ -40,6 +40,7 @@ export default class ListView extends Component {
               onSubmitAdd: false,
             })
           }}
+          deleteTask={this.props.deleteTask}
         />
       ) : null;
     });

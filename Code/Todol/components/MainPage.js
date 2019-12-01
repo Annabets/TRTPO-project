@@ -33,6 +33,10 @@ export default class MainPage extends Component {
   };
 
   _editTask = (section, index, text) => {
+    if (!text) {
+      this._deleteTask(index);
+      return;
+    }
     this.setState({
       tasks: this.state.tasks.map((item, itemIndex) => {
         if (index === itemIndex) {
@@ -47,6 +51,14 @@ export default class MainPage extends Component {
     });
   };
 
+  _deleteTask = index => {
+    let temp = this.state.tasks;
+    temp.splice(index, 1);
+    this.setState({
+      tasks: temp,
+    });
+  };
+
   render() {
     return (
       <Provider>
@@ -56,6 +68,7 @@ export default class MainPage extends Component {
             tasks={this.state.tasks}
             addTask={this._addTask}
             editTask={this._editTask}
+            deleteTask={this._deleteTask}
           />
         </Portal>
       </Provider>

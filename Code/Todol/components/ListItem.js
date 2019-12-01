@@ -12,7 +12,7 @@ export default class ListItem extends Component {
   _closeMenu = () => this.setState({menuVisible: false});
 
   render() {
-    const {item} = this.props;
+    const {item, editTask, deleteTask, index} = this.props;
     const {menuVisible} = this.state;
     return (
       <List.Item
@@ -34,13 +34,14 @@ export default class ListItem extends Component {
             }>
             <Menu.Item
               onPress={() => {
-                this.props.editTask(item.text);
+                editTask(item.text);
                 this._closeMenu();
               }}
               title="Edit"
             />
             <Menu.Item
               onPress={() => {
+                deleteTask(index);
                 this._closeMenu();
               }}
               title="Delete"
