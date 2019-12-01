@@ -12,6 +12,9 @@ export default class ListView extends Component {
     isModalOpen: false,
     modalTitle: '',
     modalText: '',
+    currentSection: '',
+    currentIndex: undefined,
+    onSubmitAdd: true,
   };
 
   _setModalTitle = title => this.setState({title: title});
@@ -33,6 +36,8 @@ export default class ListView extends Component {
               isModalOpen: true,
               modalTitle: 'Edit task',
               modalText: text,
+              currentIndex: index,
+              onSubmitAdd: false,
             })
           }}
         />
@@ -76,6 +81,8 @@ export default class ListView extends Component {
               this.setState({
                 isModalOpen: true,
                 modalTitle: 'Add new task',
+                currentSection: section.title,
+                onSubmitAdd: true,
               });
             }}
           />}
@@ -86,16 +93,26 @@ export default class ListView extends Component {
   };
 
   render() {
-    const {sections} = this.state;
+    const {addTask} = this.props;
+    const {
+      sections,
+      isModalOpen,
+      modalTitle,
+      modalText,
+      currentSection,
+      onSubmitAdd
+    } = this.state;
     return (
       <>
         <ScrollView>{this._renderListSections(sections)}</ScrollView>
         <ModalForm
-          visible={this.state.isModalOpen}
+          visible={isModalOpen}
           hideModal={this._hideModal}
-          modalTitle={this.state.modalTitle}
-          modalText={this.state.modalText}
+          modalTitle={modalTitle}
+          modalText={modalText}
           setModalText={this._setModalText}
+          currentSection={currentSection}
+          submitAction={onSubmitAdd ? addTask : (section, index, text) => {}}
         />
       </>
     );

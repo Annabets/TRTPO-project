@@ -4,7 +4,15 @@ import {Modal, Text, TextInput, Button} from 'react-native-paper';
 
 export default class ModalForm extends Component {
   _handleOkBtnClick = event => {
-    const {setModalText, hideModal} = this.props;
+    const {
+      setModalText,
+      hideModal,
+      submitAction,
+      modalText,
+      currentSection,
+      currentIndex
+    } = this.props;
+    submitAction(currentSection, currentIndex, modalText);
     setModalText('');
     hideModal();
   };
@@ -25,7 +33,7 @@ export default class ModalForm extends Component {
             style={styles.input}
             placeholder="Task is..."
             value={modalText}
-            onChangeText={text => setModalText({text})}
+            onChangeText={text => setModalText(text)}
           />
           <View style={styles.buttons}>
             <Button onPress={this._handleCancelBtnClick}>

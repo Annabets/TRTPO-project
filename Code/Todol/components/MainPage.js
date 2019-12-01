@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Provider, Portal} from 'react-native-paper';
+import {Portal, Provider} from 'react-native-paper';
 import Header from './Header';
 import ListView from './ListView';
 import tasks from '../assets/mock_data/tasks';
@@ -9,6 +9,29 @@ export default class MainPage extends Component {
     tasks: tasks.items,
   };
 
+  _addTask = (section, index, text) => {
+    if (!text) return;
+    let temp = this.state.tasks;
+    temp.splice(findLastIndex(tasks.items, 'section', section) + 1, 0, {
+      section: section,
+      text: text,
+      isImportant: false,
+      isSolved: false,
+    });
+    this.setState({
+      tasks: temp,
+    });
+
+    function findLastIndex(array, searchKey, searchValue) {
+      let index = array
+        .slice()
+        .reverse()
+        .findIndex(item => item[searchKey] === searchValue);
+      let count = array.length - 1;
+      return index >= 0 ? count - index : index;
+    }
+  };
+
   render() {
     return (
       <Provider>
@@ -16,6 +39,7 @@ export default class MainPage extends Component {
           <Header showAll={true}/>
           <ListView
             tasks={this.state.tasks}
+            addTask={this._addTask}
           />
         </Portal>
       </Provider>
