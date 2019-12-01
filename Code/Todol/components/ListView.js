@@ -41,6 +41,7 @@ export default class ListView extends Component {
             })
           }}
           deleteTask={this.props.deleteTask}
+          setImportantFlag={this.props.setImportantFlag}
         />
       ) : null;
     });

@@ -59,6 +59,21 @@ export default class MainPage extends Component {
     });
   };
 
+  _setImportantFlag = index => {
+    this.setState({
+      tasks: this.state.tasks.map((item, itemIndex) => {
+        if (index === itemIndex) {
+          return {
+            ...item,
+            isImportant: !item.isImportant,
+          };
+        } else {
+          return item;
+        }
+      }),
+    });
+  }
+
   render() {
     return (
       <Provider>
@@ -69,6 +84,7 @@ export default class MainPage extends Component {
             addTask={this._addTask}
             editTask={this._editTask}
             deleteTask={this._deleteTask}
+            setImportantFlag={this._setImportantFlag}
           />
         </Portal>
       </Provider>

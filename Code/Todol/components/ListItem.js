@@ -12,7 +12,7 @@ export default class ListItem extends Component {
   _closeMenu = () => this.setState({menuVisible: false});
 
   render() {
-    const {item, editTask, deleteTask, index} = this.props;
+    const {item, editTask, deleteTask, index, setImportantFlag} = this.props;
     const {menuVisible} = this.state;
     return (
       <List.Item
@@ -48,6 +48,7 @@ export default class ListItem extends Component {
             />
             <Menu.Item
               onPress={() => {
+                setImportantFlag(index);
                 this._closeMenu();
               }}
               title={`${item.isImportant ? 'Unmark' : 'Mark'} as important`}
