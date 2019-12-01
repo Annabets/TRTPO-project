@@ -72,7 +72,22 @@ export default class MainPage extends Component {
         }
       }),
     });
-  }
+  };
+
+  _setSolveFlag = index => {
+    this.setState({
+      tasks: this.state.tasks.map((item, itemIndex) => {
+        if (index === itemIndex) {
+          return {
+            ...item,
+            isSolved: !item.isSolved,
+          };
+        } else {
+          return item;
+        }
+      }),
+    });
+  };
 
   render() {
     return (
@@ -85,6 +100,7 @@ export default class MainPage extends Component {
             editTask={this._editTask}
             deleteTask={this._deleteTask}
             setImportantFlag={this._setImportantFlag}
+            setSolveFlag={this._setSolveFlag}
           />
         </Portal>
       </Provider>

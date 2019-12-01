@@ -12,7 +12,7 @@ export default class ListItem extends Component {
   _closeMenu = () => this.setState({menuVisible: false});
 
   render() {
-    const {item, editTask, deleteTask, index, setImportantFlag} = this.props;
+    const {item, editTask, deleteTask, index, setImportantFlag, setSolveFlag} = this.props;
     const {menuVisible} = this.state;
     return (
       <List.Item
@@ -55,7 +55,7 @@ export default class ListItem extends Component {
             />
           </Menu>
         )}
-        onPress={() => {}}
+        onPress={() => setSolveFlag(index)}
       />
     );
   }
