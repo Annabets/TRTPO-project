@@ -96,6 +96,12 @@ export default class MainPage extends Component {
     })
   };
 
+  _clearCompletedTasks = () => {
+    this.setState({
+      tasks: this.state.tasks.filter(item => !item.isSolved),
+    })
+  };
+
   render() {
     const {tasks, showAll} = this.state;
     return (
@@ -104,6 +110,7 @@ export default class MainPage extends Component {
           <Header
             showAll={showAll}
             setShowFlag={this._setShowFlag}
+            clearCompletedTasks={this._clearCompletedTasks}
           />
           <ListView
             tasks={showAll ? tasks : tasks.filter(item => item.isImportant)}

@@ -12,7 +12,7 @@ export default class Header extends Component {
   _dismissMenu = () => this.setState({account: false, options: false});
 
   render() {
-    const {showAll, setShowFlag} = this.props;
+    const {showAll, setShowFlag, clearCompletedTasks} = this.props;
     const {account, options} = this.state;
     return (
       <Appbar.Header>
@@ -42,6 +42,7 @@ export default class Header extends Component {
             />
           }>
           <Menu.Item title="Clear completed" onPress={() => {
+            clearCompletedTasks();
             this._dismissMenu();
           }} />
           <Menu.Item title={showAll ? "Only important" : "All tasks"} onPress={() => {
