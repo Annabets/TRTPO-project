@@ -10,7 +10,7 @@ const MainNavigator = createSwitchNavigator(
     Welcome: WelcomePage,
   },
   {
-    initialRouteName: 'Welcome',
+    initialRouteName: 'Loading',
   },
 );
 
