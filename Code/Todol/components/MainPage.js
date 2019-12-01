@@ -32,6 +32,21 @@ export default class MainPage extends Component {
     }
   };
 
+  _editTask = (section, index, text) => {
+    this.setState({
+      tasks: this.state.tasks.map((item, itemIndex) => {
+        if (index === itemIndex) {
+          return {
+            ...item,
+            text: text,
+          };
+        } else {
+          return item;
+        }
+      }),
+    });
+  };
+
   render() {
     return (
       <Provider>
@@ -40,6 +55,7 @@ export default class MainPage extends Component {
           <ListView
             tasks={this.state.tasks}
             addTask={this._addTask}
+            editTask={this._editTask}
           />
         </Portal>
       </Provider>

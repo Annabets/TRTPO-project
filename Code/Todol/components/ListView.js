@@ -93,13 +93,14 @@ export default class ListView extends Component {
   };
 
   render() {
-    const {addTask} = this.props;
+    const {addTask, editTask} = this.props;
     const {
       sections,
       isModalOpen,
       modalTitle,
       modalText,
       currentSection,
+      currentIndex,
       onSubmitAdd
     } = this.state;
     return (
@@ -112,7 +113,8 @@ export default class ListView extends Component {
           modalText={modalText}
           setModalText={this._setModalText}
           currentSection={currentSection}
-          submitAction={onSubmitAdd ? addTask : (section, index, text) => {}}
+          currentIndex={currentIndex}
+          submitAction={onSubmitAdd ? addTask : editTask}
         />
       </>
     );
