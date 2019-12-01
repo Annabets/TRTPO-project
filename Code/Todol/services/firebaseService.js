@@ -13,7 +13,31 @@ function signOut() {
   });
 }
 
+function signInWithEmailAndPassword(email, password) {
+  return firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .catch(error => {
+      switch (error.code) {
+        case 'auth/user-not-found':
+          return firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password)
+            .catch(error => {
+              return Promise.reject(error.message);
+            });
+        case 'auth/invalid-email':
+          return Promise.reject('email address is not valid');
+        case 'auth/wrong-password':
+          return Promise.reject('wrong password');
+        default:
+          return Promise.reject(error.message);
+      }
+    });
+}
+
 export const firebaseService = {
   handleAuthStateChange,
   signOut,
+  signInWithEmailAndPassword,
 };

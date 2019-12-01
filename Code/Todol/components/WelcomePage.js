@@ -32,8 +32,7 @@ export default class WelcomePage extends Component {
             style={styles.btn}
             contentStyle={{height: '100%'}}
             labelStyle={{fontSize: 17}}
-            onPress={() => {
-            }}>
+            onPress={() => this.props.navigation.navigate('SignIn')}>
             {'Sign in with email'}
           </Button>
         </View>
