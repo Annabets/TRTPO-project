@@ -1,19 +1,15 @@
-import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
+import MainPage from './MainPage';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Initial app component</Text>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const MainNavigator = createSwitchNavigator(
+  {
+    Main: MainPage,
   },
-});
+  {
+    initialRouteName: 'Main',
+  },
+);
+
+const App = createAppContainer(MainNavigator);
+
+export default App;
