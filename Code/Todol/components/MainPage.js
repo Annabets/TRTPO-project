@@ -1,19 +1,14 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Provider, Portal} from 'react-native-paper';
+import Header from './Header';
 
 export default function MainPage() {
   return (
-    <View style={styles.container}>
-      <Text>Main page component</Text>
-    </View>
+    <Provider>
+      <Portal>
+        <Header showAll={true} />
+      </Portal>
+    </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
