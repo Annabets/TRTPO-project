@@ -5,7 +5,12 @@ import {firebaseService} from '../services/firebaseService';
 export default class Loading extends Component {
   componentDidMount() {
     firebaseService.handleAuthStateChange(user => {
-      this.props.navigation.navigate(user ? 'Main' : 'Welcome');
+      if(user){
+        firebaseService.loadData(
+          data => this.props.navigation.navigate('Main',{tasks: data}))
+      }
+      else
+        this.props.navigation.navigate('Welcome');
     });
   }
 

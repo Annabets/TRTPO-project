@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import {Portal, Provider} from 'react-native-paper';
 import Header from './Header';
 import ListView from './ListView';
+import {firebaseService} from "../services/firebaseService";
 import tasks from '../assets/mock_data/tasks';
 
 export default class MainPage extends Component {
   state = {
-    tasks: tasks.items,
+    tasks: this.props.navigation.getParam('tasks', []),
     showAll: true,
   };
 
@@ -22,6 +23,7 @@ export default class MainPage extends Component {
     this.setState({
       tasks: temp,
     });
+    firebaseService.syncData(this.state.tasks);
 
     function findLastIndex(array, searchKey, searchValue) {
       let index = array
@@ -50,6 +52,7 @@ export default class MainPage extends Component {
         }
       }),
     });
+    firebaseService.syncData(this.state.tasks);
   };
 
   _deleteTask = index => {
@@ -58,6 +61,7 @@ export default class MainPage extends Component {
     this.setState({
       tasks: temp,
     });
+    firebaseService.syncData(this.state.tasks);
   };
 
   _setImportantFlag = index => {
@@ -73,6 +77,7 @@ export default class MainPage extends Component {
         }
       }),
     });
+    firebaseService.syncData(this.state.tasks);
   };
 
   _setSolveFlag = index => {
@@ -88,6 +93,7 @@ export default class MainPage extends Component {
         }
       }),
     });
+    firebaseService.syncData(this.state.tasks);
   };
 
   _setShowFlag = () => {
@@ -99,7 +105,8 @@ export default class MainPage extends Component {
   _clearCompletedTasks = () => {
     this.setState({
       tasks: this.state.tasks.filter(item => !item.isSolved),
-    })
+    });
+    firebaseService.syncData(this.state.tasks);
   };
 
   render() {

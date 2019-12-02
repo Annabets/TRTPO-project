@@ -36,8 +36,38 @@ function signInWithEmailAndPassword(email, password) {
     });
 }
 
+function loadData(clbk) {
+  firebase
+    .database()
+    .ref('users/' + firebase.auth().currentUser.uid)
+    .once('value', function (snapshot) {
+      const data = snapshot.val();
+      clbk(data ? data.tasks : []);
+  })
+    .catch(() => {
+
+    })
+}
+
+function syncData(tasks) {
+  firebase
+    .database()
+    .ref(`users/${firebase.auth().currentUser.uid}`)
+    .set({
+      tasks: tasks
+    })
+    .then(() => {
+
+    })
+    .catch(() => {
+
+    })
+}
+
 export const firebaseService = {
   handleAuthStateChange,
   signOut,
   signInWithEmailAndPassword,
+  loadData,
+  syncData,
 };
