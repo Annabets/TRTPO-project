@@ -1,8 +1,13 @@
 # TRTPO-project
 # Мобильное приложение «Todol» — персональный планировщик списка дел
-Язык реализации: JavaScript
+Язык реализации: JavaScript  
+Платформы: Android, iOS
 
 # Содержание
 1 [Документация](Documents)  
 1.1 [Требования](Documents/Requirements/Requirements%20Document.md)  
-1.2 [Диаграммы](Documents/System%20Design/README.md) 
+1.2 [Диаграммы](Documents/System%20Design/README.md)  
+2 [Код](Code/Todol)  
+3 [Информация о тестировании](Testing)  
+3.1 [План тестирования](Testing/TestPlan.md)  
+3.2 [Представление результатов](Testing/TestResults.md)
